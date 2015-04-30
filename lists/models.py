@@ -7,6 +7,12 @@ from django.core.urlresolvers import reverse
 class Item(models.Model):
     text = models.TextField(default='') 
     list = models.ForeignKey('List', default=None) 
+    class Meta:
+        unique_together = ('list', 'text')
+        ordering = ('id',)
+   
+    def __str__(self):
+        return self.text
     
 
 class List(models.Model):
